@@ -1,38 +1,42 @@
 package com.codurance.rover;
 
-class Direction {
-    public static final char EAST = 'E';
-    public static final char NORTH = 'N';
-    public static final char WEST = 'W';
-    public static final char SOUTH = 'S';
-    private char value = 'N';
+import java.util.Arrays;
+
+enum Direction {
+    EAST('E', 'N', 'S'),
+    NORTH('N', 'W', 'E'),
+    WEST('W', 'S', 'N'),
+    SOUTH('S', 'E', 'W');
+
+    private char value;
+    private char left;
+    private char right;
+
+    Direction(char value, char left, char right) {
+        this.value = value;
+        this.left = left;
+        this.right = right;
+    }
 
     public char value(){
         return value;
     }
 
-    public void rotateRight() {
-        if(value == NORTH){
-            value = EAST;
-        }else if(value == EAST){
-            value = SOUTH;
-        }else if(value == SOUTH){
-            value = WEST;
-        }else if(value == WEST){
-            value = NORTH;
-        }
+    public Direction rotateRight() {
+        return find(this.right);
     }
 
-    public void rotateLeft() {
-        if(value ==NORTH){
-            value = WEST;
-        }else if(value == WEST){
-            value = SOUTH;
-        }else if(value == SOUTH){
-            value = EAST;
-        }else if(value == EAST){
-            value = NORTH;
-        }
+    public Direction rotateLeft() {
+        return find(this.left);
     }
+
+    private Direction find(char value) {
+        return Arrays.asList(values()).stream()
+                .filter(direction -> direction.value==value)
+                .findFirst()
+                .orElse(null);
+    }
+
+
 
 }
