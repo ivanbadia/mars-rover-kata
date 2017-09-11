@@ -2,6 +2,10 @@ package com.codurance.rover;
 
 public abstract class Direction {
 
+    private static final char NORTH = 'N';
+    private static final char WEST = 'W';
+    private static final char EAST = 'E';
+    private static final char SOUTH = 'S';
     private final char value;
 
     Direction(char value) {
@@ -12,17 +16,42 @@ public abstract class Direction {
 
     public abstract Direction rotateLeft();
 
-    public char value(){
+    char value(){
         return value;
     }
 
-    public static North north(){
+    static North north(){
         return new North();
     }
 
+    static South south(){
+        return new South();
+    }
+
+    static Direction east() {
+        return new East();
+    }
+
+    static Direction west() {
+        return new West();
+    }
+
+    boolean isNorth() {
+        return value == NORTH;
+    }
+
+    boolean isSouth() {
+        return value == SOUTH;
+    }
+
+    boolean isEast() {
+        return value == EAST;
+    }
+
+
     private static class North extends Direction {
         North() {
-            super('N');
+            super(NORTH);
         }
 
         @Override
@@ -39,7 +68,7 @@ public abstract class Direction {
 
     private static class West extends Direction {
         West() {
-            super('W');
+            super(WEST);
         }
 
         @Override
@@ -55,7 +84,7 @@ public abstract class Direction {
 
     private static class East extends Direction {
         East() {
-            super('E');
+            super(EAST);
         }
 
         @Override
@@ -71,7 +100,7 @@ public abstract class Direction {
 
     private static class South extends Direction {
         South() {
-            super('S');
+            super(SOUTH);
         }
 
         @Override
