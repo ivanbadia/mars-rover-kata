@@ -11,10 +11,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <junit.jupiter.version>5.0.0-RC3</junit.jupiter.version>
+        <junit.jupiter.version>5.0.0</junit.jupiter.version>
         <junit.version>4.12</junit.version>
-        <junit.vintage.version>${junit.version}.0-RC3</junit.vintage.version>
-        <junit.platform.version>1.0.0-RC3</junit.platform.version>
+        <junit.vintage.version>${junit.version}.0</junit.vintage.version>
+        <junit.platform.version>1.0.0</junit.platform.version>
         <assertj-core.version>3.6.2</assertj-core.version>
     </properties>
 
@@ -35,6 +35,8 @@
                     <includes>
                         <include>**/Test*.java</include>
                         <include>**/*Test.java</include>
+                        <include>**/Should*.java</include>
+                        <include>**/*Should.java</include>
                         <include>**/*Tests.java</include>
                         <include>**/*TestCase.java</include>
                     </includes>

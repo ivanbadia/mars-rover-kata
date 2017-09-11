@@ -29,4 +29,8 @@ public class MarsRoverShould {
     public void rotate_right(String commands, String finishingPoint){
         assertThat(new MarsRover().execute(commands)).isEqualTo(finishingPoint);
     }
+
+    public void move_onew_point(){
+
+    }
 }
