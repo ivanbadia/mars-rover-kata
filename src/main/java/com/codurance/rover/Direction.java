@@ -1,42 +1,87 @@
 package com.codurance.rover;
 
-import java.util.Arrays;
+public abstract class Direction {
 
-enum Direction {
-    EAST('E', 'N', 'S'),
-    NORTH('N', 'W', 'E'),
-    WEST('W', 'S', 'N'),
-    SOUTH('S', 'E', 'W');
+    private final char value;
 
-    private char value;
-    private char left;
-    private char right;
-
-    Direction(char value, char left, char right) {
+    Direction(char value) {
         this.value = value;
-        this.left = left;
-        this.right = right;
     }
+
+    public abstract Direction rotateRight();
+
+    public abstract Direction rotateLeft();
 
     public char value(){
         return value;
     }
 
-    public Direction rotateRight() {
-        return find(this.right);
+    public static North north(){
+        return new North();
     }
 
-    public Direction rotateLeft() {
-        return find(this.left);
+    private static class North extends Direction {
+        North() {
+            super('N');
+        }
+
+        @Override
+        public Direction rotateRight() {
+            return new East();
+        }
+
+        @Override
+        public Direction rotateLeft() {
+            return new West();
+        }
     }
 
-    private Direction find(char value) {
-        return Arrays.asList(values()).stream()
-                .filter(direction -> direction.value==value)
-                .findFirst()
-                .orElse(null);
+
+    private static class West extends Direction {
+        West() {
+            super('W');
+        }
+
+        @Override
+        public Direction rotateRight() {
+            return new North();
+        }
+
+        @Override
+        public Direction rotateLeft() {
+            return new South();
+        }
     }
 
+    private static class East extends Direction {
+        East() {
+            super('E');
+        }
 
+        @Override
+        public Direction rotateRight() {
+            return new South();
+        }
 
+        @Override
+        public Direction rotateLeft() {
+            return new North();
+        }
+    }
+
+    private static class South extends Direction {
+        South() {
+            super('S');
+        }
+
+        @Override
+        public Direction rotateRight() {
+            return new West();
+        }
+
+        @Override
+        public Direction rotateLeft() {
+            return new East();
+        }
+    }
 }

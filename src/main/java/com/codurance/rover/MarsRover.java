@@ -6,7 +6,7 @@ public class MarsRover {
     private Direction direction;
 
     public MarsRover() {
-        this.direction = Direction.NORTH;
+        this.direction = Direction.north();
     }
 
     public String execute(String commands) {
