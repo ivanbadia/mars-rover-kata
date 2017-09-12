@@ -36,7 +36,7 @@ public class Grid {
 
     private Point wrapAroundIfItIsOutOfTheLimits(Point nextPoint) {
         if(nextPoint.x()<0){
-            nextPoint = wrapFromLeftToRigth(nextPoint);
+            nextPoint = wrapFromLeftToRight(nextPoint);
         } else if(nextPoint.y()<0){
             nextPoint = wrapFromBottomToTop(nextPoint);
         } else if(nextPoint.x()>=x){
@@ -59,7 +59,7 @@ public class Grid {
         return new Point(coordinate(nextPoint.x(), y + nextPoint.y()), nextPoint.direction());
     }
 
-    private Point wrapFromLeftToRigth(Point nextPoint) {
+    private Point wrapFromLeftToRight(Point nextPoint) {
         return new Point(coordinate(x + nextPoint.x(), nextPoint.y()), nextPoint.direction());
     }
 
