@@ -4,17 +4,13 @@ public class MarsRover {
     private static final char ROTATE_LEFT = 'L';
     private static final char ROTATE_RIGHT = 'R';
     private static final char MOVE_ONE_POINT = 'M';
+    private final Grid grid;
     private Point point;
 
-    public MarsRover() {
-        point = new Point(new Coordinates(0, 0), Direction.north());
-    }
-
-
-    public MarsRover(Point point) {
+    public MarsRover(Grid grid, Point point) {
+        this.grid = grid;
         this.point = point;
     }
-
 
     public String execute(String commands) {
        for(char command : commands.toCharArray()){
@@ -23,7 +19,7 @@ public class MarsRover {
            }else if(command==ROTATE_RIGHT){
                point = point.rotateRight();
            }else if(command==MOVE_ONE_POINT){
-               point = point.move();
+               point = grid.next(point);
            }
        }
 
