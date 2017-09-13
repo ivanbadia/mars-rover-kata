@@ -23,7 +23,7 @@ public class MarsRoverShould {
 
     public void rotate_left(String commands, String finishingPoint){
 
-        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 0), Direction.north()));
+        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 0), Direction.NORTH));
 
         assertThat(marsRover.execute(commands)).isEqualTo(finishingPoint);
     }
@@ -36,7 +36,7 @@ public class MarsRoverShould {
                 "RRRR, '0,0,N'"})
     public void rotate_right(String commands, String finishingPoint){
 
-        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 0), Direction.north()));
+        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 0), Direction.NORTH));
 
         assertThat(marsRover.execute(commands)).isEqualTo(finishingPoint);
     }
@@ -44,7 +44,7 @@ public class MarsRoverShould {
     @DisplayName("move to the north")
     @Test
     public void move_to_the_north(){
-        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 0), Direction.north()));
+        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 0), Direction.NORTH));
 
         assertThat(marsRover.execute("MM")).isEqualTo("0,2,N");
     }
@@ -53,7 +53,7 @@ public class MarsRoverShould {
     @Test
     public void move_to_the_south(){
 
-        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 10), Direction.south()));
+        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 10), Direction.SOUTH));
 
         assertThat(marsRover.execute("MM")).isEqualTo("0,8,S");
     }
@@ -61,7 +61,7 @@ public class MarsRoverShould {
     @DisplayName("move to the east")
     @Test
     public void move_to_the_east(){
-        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 0), Direction.east()));
+        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 0), Direction.EAST));
 
         assertThat(marsRover.execute("MM")).isEqualTo("2,0,E");
     }
@@ -70,7 +70,7 @@ public class MarsRoverShould {
     @Test
     public void move_to_the_west(){
 
-        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(2, 0), Direction.west()));
+        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(2, 0), Direction.WEST));
 
         assertThat(marsRover.execute("MM")).isEqualTo("0,0,W");
     }
@@ -79,7 +79,7 @@ public class MarsRoverShould {
     @Test
     public void wrap_around_if_it_reaches_the_end_of_the_grid_on_the_left(){
 
-        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 0), Direction.west()));
+        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 0), Direction.WEST));
 
         assertThat(marsRover.execute("MM")).isEqualTo("8,0,W");
     }
@@ -88,7 +88,7 @@ public class MarsRoverShould {
     @Test
     public void wrap_around_if_it_reaches_the_end_of_the_grid_on_the_right(){
 
-        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(9, 0), Direction.east()));
+        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(9, 0), Direction.EAST));
 
         assertThat(marsRover.execute("MM")).isEqualTo("1,0,E");
     }
@@ -97,7 +97,7 @@ public class MarsRoverShould {
     @Test
     public void wrap_around_if_it_reaches_the_end_of_the_grid_at_the_top(){
 
-        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 9), Direction.north()));
+        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 9), Direction.NORTH));
 
         assertThat(marsRover.execute("MM")).isEqualTo("0,1,N");
     }
@@ -106,7 +106,7 @@ public class MarsRoverShould {
     @Test
     public void wrap_around_if_it_reaches_the_end_of_the_grid_at_the_bottom(){
 
-        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 9), Direction.south()));
+        MarsRover marsRover = new MarsRover(GRID, new Point(coordinates(0, 9), Direction.SOUTH));
 
         assertThat(marsRover.execute("MM")).isEqualTo("0,7,S");
     }
@@ -116,7 +116,7 @@ public class MarsRoverShould {
     public void move_up_to_the_last_possible_point_and_reports_the_obstacle(){
 
         Grid grid = new Grid(10, 10, singletonList(OBSTACLE_ON_0_2));
-        MarsRover marsRover = new MarsRover(grid, new Point(coordinates(0, 0), Direction.north()));
+        MarsRover marsRover = new MarsRover(grid, new Point(coordinates(0, 0), Direction.NORTH));
 
         assertThat(marsRover.execute("MMM")).isEqualTo("O,0,1,N");
     }

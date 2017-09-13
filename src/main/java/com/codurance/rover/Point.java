@@ -37,11 +37,11 @@ class Point {
 
     Point next(){
         Point nextPoint;
-        if(direction.isNorth()){
+        if(direction==Direction.NORTH){
             nextPoint = moveToNorth();
-        }else if(direction.isSouth()){
+        }else if(direction==Direction.SOUTH){
             nextPoint = moveToSouth();
-        }else if(direction.isEast()){
+        }else if(direction==Direction.EAST){
             nextPoint = moveToEast();
         }else{
             nextPoint = moveToWest();
